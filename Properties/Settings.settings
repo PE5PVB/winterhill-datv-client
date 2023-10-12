@@ -1,0 +1,45 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="datvreceiver.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="winterhill_host" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="winterhill_baseport" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">9900</Value>
+    </Setting>
+    <Setting Name="force_local_ip" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="force_local_ip_ip" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="snapshot_path" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="enable_qo100_spectrum" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="rx1_offset" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">9749982</Value>
+    </Setting>
+    <Setting Name="rx2_offset" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">9749982</Value>
+    </Setting>
+    <Setting Name="rx3_offset" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">9749982</Value>
+    </Setting>
+    <Setting Name="rx4_offset" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">9749982</Value>
+    </Setting>
+    <Setting Name="enable_qo100_chat" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="default_chat_nick" Type="System.String" Scope="User">
+      <Value Profile="(Default)">NOCALL</Value>
+    </Setting>
+    <Setting Name="minimize_properties" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
