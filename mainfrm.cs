@@ -80,7 +80,7 @@ namespace datvreceiver
         private delegate void UpdateLBColorDelegate(Label LB, Color col);
 
         private delegate int GetValueDelegate(TrackBar track);
-
+        
         SpectrumForm specForm;
 
         public void setFreq(int rx, int freq, int sr)
@@ -220,7 +220,7 @@ namespace datvreceiver
             }
 
             MediaConfiguration mediaConfig = new MediaConfiguration();
-            mediaConfig.EnableHardwareDecoding = false;
+            mediaConfig.EnableHardwareDecoding = true;
             media.AddOption(mediaConfig);
 
             return media;
@@ -764,8 +764,10 @@ namespace datvreceiver
             {
                 MainSplitter.Panel2Collapsed = true;
                 MainSplitter.Panel2.Hide();
+                tabControl1.ItemSize = new Size(0, 1);
+                tabControl1.SizeMode = TabSizeMode.Fixed;
+                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             }
-
         }
 
         private void updateTS(int rx)
@@ -1068,12 +1070,18 @@ namespace datvreceiver
         {
             MainSplitter.Panel2Collapsed = true;
             MainSplitter.Panel2.Hide();
+            tabControl1.ItemSize = new Size(0, 1);
+            tabControl1.SizeMode = TabSizeMode.Fixed;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
         }
 
         private void statusStrip1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             MainSplitter.Panel2Collapsed = false;
             MainSplitter.Panel2.Show();
+            tabControl1.ItemSize = new Size(120, 24); // Set the desired size
+            tabControl1.SizeMode = TabSizeMode.Normal;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
         }
 
         private void newFrequencySelect(int rx)
