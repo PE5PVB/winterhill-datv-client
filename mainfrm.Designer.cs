@@ -48,8 +48,6 @@
             this.nolock_rx4 = new System.Windows.Forms.PictureBox();
             this.videoRx4 = new LibVLCSharp.WinForms.VideoView();
             this.button2 = new System.Windows.Forms.Button();
-            this.btn_qo100chat = new System.Windows.Forms.Button();
-            this.butShowSpectrum = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.butForceTSRx4 = new System.Windows.Forms.Button();
@@ -64,10 +62,6 @@
             this.trackBar3 = new System.Windows.Forms.TrackBar();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.butSnapshotRx4 = new System.Windows.Forms.Button();
-            this.butSnapshotRx3 = new System.Windows.Forms.Button();
-            this.butSnapshotRx2 = new System.Windows.Forms.Button();
-            this.butSnapshotRx1 = new System.Windows.Forms.Button();
             this.lab_rx4_tsaddr = new System.Windows.Forms.Label();
             this.lab_rx4_mediatypes = new System.Windows.Forms.Label();
             this.lab_rx4_null = new System.Windows.Forms.Label();
@@ -140,13 +134,7 @@
             this.labLocalIP = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.checkEnableChat = new System.Windows.Forms.CheckBox();
-            this.checkEnableSpectrum = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.butChooseSnapshotPath = new System.Windows.Forms.Button();
-            this.label24 = new System.Windows.Forms.Label();
-            this.txtSnapshotPath = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtLocalIP = new System.Windows.Forms.TextBox();
             this.checkForceLocalIP = new System.Windows.Forms.CheckBox();
@@ -207,7 +195,6 @@
             this.splitContainer6.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -252,8 +239,6 @@
             // MainSplitter.Panel2
             // 
             this.MainSplitter.Panel2.Controls.Add(this.button2);
-            this.MainSplitter.Panel2.Controls.Add(this.btn_qo100chat);
-            this.MainSplitter.Panel2.Controls.Add(this.butShowSpectrum);
             this.MainSplitter.Panel2.Controls.Add(this.label13);
             this.MainSplitter.Panel2.Controls.Add(this.label11);
             this.MainSplitter.Panel2.Controls.Add(this.butForceTSRx4);
@@ -268,10 +253,6 @@
             this.MainSplitter.Panel2.Controls.Add(this.trackBar3);
             this.MainSplitter.Panel2.Controls.Add(this.trackBar2);
             this.MainSplitter.Panel2.Controls.Add(this.trackBar1);
-            this.MainSplitter.Panel2.Controls.Add(this.butSnapshotRx4);
-            this.MainSplitter.Panel2.Controls.Add(this.butSnapshotRx3);
-            this.MainSplitter.Panel2.Controls.Add(this.butSnapshotRx2);
-            this.MainSplitter.Panel2.Controls.Add(this.butSnapshotRx1);
             this.MainSplitter.Panel2.Controls.Add(this.lab_rx4_tsaddr);
             this.MainSplitter.Panel2.Controls.Add(this.lab_rx4_mediatypes);
             this.MainSplitter.Panel2.Controls.Add(this.lab_rx4_null);
@@ -386,7 +367,7 @@
             this.lab_rx1_nothing.Name = "lab_rx1_nothing";
             this.lab_rx1_nothing.Size = new System.Drawing.Size(108, 31);
             this.lab_rx1_nothing.TabIndex = 3;
-            this.lab_rx1_nothing.Text = "label29";
+            this.lab_rx1_nothing.Text = "Geen verbinding";
             // 
             // nolock_rx1
             // 
@@ -425,7 +406,7 @@
             this.lab_rx3_nothing.Name = "lab_rx3_nothing";
             this.lab_rx3_nothing.Size = new System.Drawing.Size(108, 31);
             this.lab_rx3_nothing.TabIndex = 4;
-            this.lab_rx3_nothing.Text = "label29";
+            this.lab_rx3_nothing.Text = "Geen verbinding";
             // 
             // nolock_rx3
             // 
@@ -487,7 +468,7 @@
             this.lab_rx2_nothing.Name = "lab_rx2_nothing";
             this.lab_rx2_nothing.Size = new System.Drawing.Size(108, 31);
             this.lab_rx2_nothing.TabIndex = 4;
-            this.lab_rx2_nothing.Text = "label29";
+            this.lab_rx2_nothing.Text = "Geen verbinding";
             // 
             // nolock_rx2
             // 
@@ -526,7 +507,7 @@
             this.lab_rx4_nothing.Name = "lab_rx4_nothing";
             this.lab_rx4_nothing.Size = new System.Drawing.Size(108, 31);
             this.lab_rx4_nothing.TabIndex = 4;
-            this.lab_rx4_nothing.Text = "label29";
+            this.lab_rx4_nothing.Text = "Geen verbinding";
             // 
             // nolock_rx4
             // 
@@ -564,29 +545,7 @@
             this.button2.Text = "<<";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // btn_qo100chat
-            // 
-            this.btn_qo100chat.Location = new System.Drawing.Point(1260, 63);
-            this.btn_qo100chat.Name = "btn_qo100chat";
-            this.btn_qo100chat.Size = new System.Drawing.Size(115, 23);
-            this.btn_qo100chat.TabIndex = 165;
-            this.btn_qo100chat.Text = "QO-100 Chat";
-            this.btn_qo100chat.UseVisualStyleBackColor = true;
-            this.btn_qo100chat.Visible = false;
-            this.btn_qo100chat.Click += new System.EventHandler(this.btn_qo100chat_Click);
-            // 
-            // butShowSpectrum
-            // 
-            this.butShowSpectrum.Location = new System.Drawing.Point(1260, 34);
-            this.butShowSpectrum.Name = "butShowSpectrum";
-            this.butShowSpectrum.Size = new System.Drawing.Size(115, 23);
-            this.butShowSpectrum.TabIndex = 164;
-            this.butShowSpectrum.Text = "QO-100 Spectrum";
-            this.butShowSpectrum.UseVisualStyleBackColor = true;
-            this.butShowSpectrum.Visible = false;
-            this.butShowSpectrum.Click += new System.EventHandler(this.butShowSpectrum_Click);
-            // 
+            //
             // label13
             // 
             this.label13.AutoSize = true;
@@ -699,7 +658,7 @@
             this.trackBar4.Name = "trackBar4";
             this.trackBar4.Size = new System.Drawing.Size(213, 45);
             this.trackBar4.TabIndex = 153;
-            this.trackBar4.Value = 50;
+            this.trackBar4.Value = 100;
             this.trackBar4.Scroll += new System.EventHandler(this.trackBar4_Scroll);
             // 
             // trackBar3
@@ -710,7 +669,7 @@
             this.trackBar3.Name = "trackBar3";
             this.trackBar3.Size = new System.Drawing.Size(213, 45);
             this.trackBar3.TabIndex = 152;
-            this.trackBar3.Value = 50;
+            this.trackBar3.Value = 100;
             this.trackBar3.Scroll += new System.EventHandler(this.trackBar3_Scroll);
             // 
             // trackBar2
@@ -721,7 +680,7 @@
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(213, 45);
             this.trackBar2.TabIndex = 151;
-            this.trackBar2.Value = 50;
+            this.trackBar2.Value = 100;
             this.trackBar2.Scroll += new System.EventHandler(this.trackBar2_Scroll);
             // 
             // trackBar1
@@ -732,57 +691,9 @@
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(213, 45);
             this.trackBar1.TabIndex = 150;
-            this.trackBar1.Value = 50;
+            this.trackBar1.Value = 100;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_ValueChanged);
-            // 
-            // butSnapshotRx4
-            // 
-            this.butSnapshotRx4.FlatAppearance.BorderSize = 0;
-            this.butSnapshotRx4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butSnapshotRx4.Image = global::datvreceiver.Properties.Resources.camera_small_28;
-            this.butSnapshotRx4.Location = new System.Drawing.Point(1153, 161);
-            this.butSnapshotRx4.Name = "butSnapshotRx4";
-            this.butSnapshotRx4.Size = new System.Drawing.Size(38, 38);
-            this.butSnapshotRx4.TabIndex = 149;
-            this.butSnapshotRx4.UseVisualStyleBackColor = true;
-            this.butSnapshotRx4.Click += new System.EventHandler(this.butSnapshotRx4_Click);
-            // 
-            // butSnapshotRx3
-            // 
-            this.butSnapshotRx3.FlatAppearance.BorderSize = 0;
-            this.butSnapshotRx3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butSnapshotRx3.Image = global::datvreceiver.Properties.Resources.camera_small_28;
-            this.butSnapshotRx3.Location = new System.Drawing.Point(1153, 117);
-            this.butSnapshotRx3.Name = "butSnapshotRx3";
-            this.butSnapshotRx3.Size = new System.Drawing.Size(38, 38);
-            this.butSnapshotRx3.TabIndex = 148;
-            this.butSnapshotRx3.UseVisualStyleBackColor = true;
-            this.butSnapshotRx3.Click += new System.EventHandler(this.butSnapshotRx3_Click);
-            // 
-            // butSnapshotRx2
-            // 
-            this.butSnapshotRx2.FlatAppearance.BorderSize = 0;
-            this.butSnapshotRx2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butSnapshotRx2.Image = global::datvreceiver.Properties.Resources.camera_small_28;
-            this.butSnapshotRx2.Location = new System.Drawing.Point(1153, 73);
-            this.butSnapshotRx2.Name = "butSnapshotRx2";
-            this.butSnapshotRx2.Size = new System.Drawing.Size(38, 38);
-            this.butSnapshotRx2.TabIndex = 147;
-            this.butSnapshotRx2.UseVisualStyleBackColor = true;
-            this.butSnapshotRx2.Click += new System.EventHandler(this.butSnapshotRx2_Click);
-            // 
-            // butSnapshotRx1
-            // 
-            this.butSnapshotRx1.FlatAppearance.BorderSize = 0;
-            this.butSnapshotRx1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butSnapshotRx1.Image = global::datvreceiver.Properties.Resources.camera_small_28;
-            this.butSnapshotRx1.Location = new System.Drawing.Point(1153, 30);
-            this.butSnapshotRx1.Name = "butSnapshotRx1";
-            this.butSnapshotRx1.Size = new System.Drawing.Size(38, 38);
-            this.butSnapshotRx1.TabIndex = 146;
-            this.butSnapshotRx1.UseVisualStyleBackColor = true;
-            this.butSnapshotRx1.Click += new System.EventHandler(this.butSnapshotRx1_Click);
-            // 
+            //
             // lab_rx4_tsaddr
             // 
             this.lab_rx4_tsaddr.AutoSize = true;
@@ -1497,7 +1408,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.groupBox5);
             this.groupBox2.Controls.Add(this.groupBox4);
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.label17);
@@ -1509,79 +1419,18 @@
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = " Settings ";
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.checkEnableChat);
-            this.groupBox5.Controls.Add(this.checkEnableSpectrum);
-            this.groupBox5.Location = new System.Drawing.Point(25, 359);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(398, 97);
-            this.groupBox5.TabIndex = 8;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = " QO-100 Spectrum ";
-            // 
-            // checkEnableChat
-            // 
-            this.checkEnableChat.AutoSize = true;
-            this.checkEnableChat.Location = new System.Drawing.Point(31, 56);
-            this.checkEnableChat.Name = "checkEnableChat";
-            this.checkEnableChat.Size = new System.Drawing.Size(167, 17);
-            this.checkEnableChat.TabIndex = 1;
-            this.checkEnableChat.Text = "Enable Wideband BATC Chat";
-            this.checkEnableChat.UseVisualStyleBackColor = true;
-            // 
-            // checkEnableSpectrum
-            // 
-            this.checkEnableSpectrum.AutoSize = true;
-            this.checkEnableSpectrum.Location = new System.Drawing.Point(31, 33);
-            this.checkEnableSpectrum.Name = "checkEnableSpectrum";
-            this.checkEnableSpectrum.Size = new System.Drawing.Size(107, 17);
-            this.checkEnableSpectrum.TabIndex = 0;
-            this.checkEnableSpectrum.Text = "Enable Spectrum";
-            this.checkEnableSpectrum.UseVisualStyleBackColor = true;
-            // 
+            //
             // groupBox4
-            // 
+            //
             this.groupBox4.Controls.Add(this.checkMinProperties);
             this.groupBox4.Controls.Add(this.label29);
-            this.groupBox4.Controls.Add(this.butChooseSnapshotPath);
-            this.groupBox4.Controls.Add(this.label24);
-            this.groupBox4.Controls.Add(this.txtSnapshotPath);
-            this.groupBox4.Location = new System.Drawing.Point(25, 462);
+            this.groupBox4.Location = new System.Drawing.Point(25, 359);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(398, 115);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = " Misc Settings ";
-            // 
-            // butChooseSnapshotPath
-            // 
-            this.butChooseSnapshotPath.Location = new System.Drawing.Point(343, 30);
-            this.butChooseSnapshotPath.Name = "butChooseSnapshotPath";
-            this.butChooseSnapshotPath.Size = new System.Drawing.Size(26, 21);
-            this.butChooseSnapshotPath.TabIndex = 2;
-            this.butChooseSnapshotPath.Text = "...";
-            this.butChooseSnapshotPath.UseVisualStyleBackColor = true;
-            this.butChooseSnapshotPath.Click += new System.EventHandler(this.butChooseSnapshotPath_Click);
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(28, 34);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(83, 13);
-            this.label24.TabIndex = 1;
-            this.label24.Text = "Snapshot Path :";
-            // 
-            // txtSnapshotPath
-            // 
-            this.txtSnapshotPath.Location = new System.Drawing.Point(150, 31);
-            this.txtSnapshotPath.Name = "txtSnapshotPath";
-            this.txtSnapshotPath.ReadOnly = true;
-            this.txtSnapshotPath.Size = new System.Drawing.Size(187, 20);
-            this.txtSnapshotPath.TabIndex = 0;
-            // 
+            //
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.txtLocalIP);
@@ -1844,8 +1693,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -1899,11 +1746,6 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button butChooseSnapshotPath;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox txtSnapshotPath;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.CheckBox checkEnableSpectrum;
         private System.Windows.Forms.TextBox txtRX4Offset;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.TextBox txtRX3Offset;
@@ -1914,8 +1756,6 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        private System.Windows.Forms.Button btn_qo100chat;
-        private System.Windows.Forms.Button butShowSpectrum;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button butForceTSRx4;
@@ -1930,10 +1770,6 @@
         private System.Windows.Forms.TrackBar trackBar3;
         private System.Windows.Forms.TrackBar trackBar2;
         private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.Button butSnapshotRx4;
-        private System.Windows.Forms.Button butSnapshotRx3;
-        private System.Windows.Forms.Button butSnapshotRx2;
-        private System.Windows.Forms.Button butSnapshotRx1;
         private System.Windows.Forms.Label lab_rx4_tsaddr;
         private System.Windows.Forms.Label lab_rx4_mediatypes;
         private System.Windows.Forms.Label lab_rx4_null;
@@ -1998,7 +1834,6 @@
         private System.Windows.Forms.Label lab_rx3_nothing;
         private System.Windows.Forms.Label lab_rx2_nothing;
         private System.Windows.Forms.Label lab_rx4_nothing;
-        private System.Windows.Forms.CheckBox checkEnableChat;
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;
         private System.Windows.Forms.CheckBox checkMinProperties;
         private System.Windows.Forms.Label label29;

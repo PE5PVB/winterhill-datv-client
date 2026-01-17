@@ -36,15 +36,12 @@ namespace datvreceiver
         int winterhill_baseport = 0;
         bool forceLocalIP = false;
         string localip;
-        string snapShotPath = "";
 
         int rx1Offset = 0;
         int rx2Offset = 0;
         int rx3Offset = 0;
         int rx4Offset = 0;
 
-        bool enableSpectrum = false;
-        bool enableChat = false;
         bool minPropertiesAtStartup = false;
 
         private Object _volumelock = new Object();
@@ -52,9 +49,6 @@ namespace datvreceiver
         int rx2Volume = 50;
         int rx3Volume = 50;
         int rx4Volume = 50;
-
-        private wbchat chatForm;
-
 
         // constants
         Dictionary<int, string> scanstate_lookup = new Dictionary<int, string>()
@@ -80,8 +74,6 @@ namespace datvreceiver
         private delegate void UpdateLBColorDelegate(Label LB, Color col);
 
         private delegate int GetValueDelegate(TrackBar track);
-        
-        SpectrumForm specForm;
 
         public void setFreq(int rx, int freq, int sr)
         {
@@ -97,7 +89,9 @@ namespace datvreceiver
                 case 3: ifOffset = rx4Offset; break;
             }
 
-            controlWS.Send("F" + (rx + 1).ToString() + "," + freq + "," + sr.ToString() + "," + ifOffset);
+            // Convert MHz to kHz for Winterhill protocol
+            int ifOffsetKhz = ifOffset * 1000;
+            controlWS.Send("F" + (rx + 1).ToString() + "," + freq + "," + sr.ToString() + "," + ifOffsetKhz);
 
         }
 
@@ -175,27 +169,21 @@ namespace datvreceiver
             winterhill_baseport = Properties.Settings.Default.winterhill_baseport;
             forceLocalIP = Properties.Settings.Default.force_local_ip;
             localip = Properties.Settings.Default.force_local_ip_ip;
-            snapShotPath = Properties.Settings.Default.snapshot_path;
 
             rx1Offset = Properties.Settings.Default.rx1_offset;
             rx2Offset = Properties.Settings.Default.rx2_offset;
             rx3Offset = Properties.Settings.Default.rx3_offset;
             rx4Offset = Properties.Settings.Default.rx4_offset;
 
-            enableSpectrum = Properties.Settings.Default.enable_qo100_spectrum;
-            enableChat = Properties.Settings.Default.enable_qo100_chat;
             minPropertiesAtStartup = Properties.Settings.Default.minimize_properties;
             txtWinterhillHost.Text = winterhill_host;
             txtWinterhillBasePort.Text = winterhill_baseport.ToString();
             checkForceLocalIP.Checked = forceLocalIP;
-            txtSnapshotPath.Text = snapShotPath;
             txtLocalIP.Text = localip;
             txtRX1Offset.Text = rx1Offset.ToString();
             txtRX2Offset.Text = rx2Offset.ToString();
             txtRX3Offset.Text = rx3Offset.ToString();
             txtRX4Offset.Text = rx4Offset.ToString();
-            checkEnableSpectrum.Checked = enableSpectrum;
-            checkEnableChat.Checked = enableChat;
             checkMinProperties.Checked = minPropertiesAtStartup;
 
 
@@ -379,17 +367,36 @@ namespace datvreceiver
 
             string url = "ws://" + host + ":" + port.ToString() + "/ ";
 
-            monitorWS = new WebSocket(url, "monitor");
-            monitorWS.OnOpen += MonitorWS_OnOpen;
-            monitorWS.OnMessage += MonitorWS_OnMessage;
-            monitorWS.OnClose += MonitorWS_OnClose;
-            monitorWS.ConnectAsync();
+            try
+            {
+                monitorWS = new WebSocket(url, "monitor");
+                monitorWS.OnOpen += MonitorWS_OnOpen;
+                monitorWS.OnMessage += MonitorWS_OnMessage;
+                monitorWS.OnClose += MonitorWS_OnClose;
+                monitorWS.OnError += MonitorWS_OnError;
+                monitorWS.ConnectAsync();
 
-            controlWS = new WebSocket(url, "control");
-            controlWS.OnClose += ControlWS_OnClose;
-            controlWS.OnMessage += ControlWS_OnMessage;
-            controlWS.OnOpen += ControlWS_OnOpen;
-            controlWS.ConnectAsync();
+                controlWS = new WebSocket(url, "control");
+                controlWS.OnClose += ControlWS_OnClose;
+                controlWS.OnMessage += ControlWS_OnMessage;
+                controlWS.OnOpen += ControlWS_OnOpen;
+                controlWS.OnError += ControlWS_OnError;
+                controlWS.ConnectAsync();
+            }
+            catch (Exception ex)
+            {
+                debug("WebSocket connection failed: " + ex.Message);
+            }
+        }
+
+        private void MonitorWS_OnError(object sender, ErrorEventArgs e)
+        {
+            debug("Monitor WS Error: " + e.Message);
+        }
+
+        private void ControlWS_OnError(object sender, ErrorEventArgs e)
+        {
+            debug("Control WS Error: " + e.Message);
         }
 
         private void ControlWS_OnOpen(object sender, EventArgs e)
@@ -404,48 +411,35 @@ namespace datvreceiver
         private void ControlWS_OnClose(object sender, CloseEventArgs e)
         {
             debug("Control WS Closed");
-            controlWS.Connect();
+            try
+            {
+                System.Threading.Thread.Sleep(2000);
+                controlWS.ConnectAsync();
+            }
+            catch (Exception ex)
+            {
+                debug("Control WS Reconnect failed: " + ex.Message);
+            }
         }
 
         private void MonitorWS_OnClose(object sender, CloseEventArgs e)
         {
             debug("Monitor WS Closed");
-            monitorWS.Connect();
+            try
+            {
+                System.Threading.Thread.Sleep(2000);
+                monitorWS.ConnectAsync();
+            }
+            catch (Exception ex)
+            {
+                debug("Monitor WS Reconnect failed: " + ex.Message);
+            }
         }
 
         private void MonitorWS_OnMessage(object sender, MessageEventArgs e)
         {
             monitorMessage mm = JsonConvert.DeserializeObject<monitorMessage>(e.Data);
             updateInfo(mm);
-        }
-
-        private void TakeSnapshot(int rx)
-        {
-            // get path
-            string path = snapShotPath;
-
-            string filename = DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".png";
-
-            switch(rx)
-            {
-                case 1: if (lab_rx1_service.Text.Length > 0) { filename = lab_rx1_service.Text.ToString() + "_" + filename; } break;
-                case 2: if (lab_rx2_service.Text.Length > 0) { filename = lab_rx2_service.Text.ToString() + "_" + filename; } break;
-                case 3: if (lab_rx3_service.Text.Length > 0) { filename = lab_rx3_service.Text.ToString() + "_" + filename; } break;
-                case 4: if (lab_rx4_service.Text.Length > 0) { filename = lab_rx4_service.Text.ToString() + "_" + filename; } break;
-            }
-
-            // remove any possible spaces
-            filename = filename.Replace(" ", "");
-
-            debug("snapshot: " + rx.ToString() + " - " + filename);
-
-            switch (rx)
-            {
-                case 1: videoRx1.MediaPlayer.TakeSnapshot(0, path + "\\" + filename, 0, 0); break;
-                case 2: videoRx2.MediaPlayer.TakeSnapshot(0, path + "\\" + filename, 0, 0); break;
-                case 3: videoRx3.MediaPlayer.TakeSnapshot(0, path + "\\" + filename, 0, 0); break;
-                case 4: videoRx4.MediaPlayer.TakeSnapshot(0, path + "\\" + filename, 0, 0); break;
-            }
         }
 
         private void updateInfo(monitorMessage mm)
@@ -746,20 +740,6 @@ namespace datvreceiver
             changeVolume(3);
             changeVolume(4);
 
-            if (enableSpectrum)
-            {
-                specForm = new SpectrumForm();
-                specForm.setFreq += setFreq;
-                butShowSpectrum.Visible = true;
-            }
-
-            // load chat window
-            if (enableChat)
-            {
-                chatForm = new wbchat();
-                btn_qo100chat.Visible = true;
-            }
-
             if(minPropertiesAtStartup)
             {
                 MainSplitter.Panel2Collapsed = true;
@@ -794,27 +774,6 @@ namespace datvreceiver
                 case 3: rx3PrevState = -1; break;
                 case 4: rx4PrevState = -1; break;
             }
-        }
-
-
-        private void butSnapshotRx1_Click(object sender, EventArgs e)
-        {
-            TakeSnapshot(1);
-        }
-
-        private void butSnapshotRx2_Click(object sender, EventArgs e)
-        {
-            TakeSnapshot(2);
-        }
-
-        private void butSnapshotRx3_Click(object sender, EventArgs e)
-        {
-            TakeSnapshot(3);
-        }
-
-        private void butSnapshotRx4_Click(object sender, EventArgs e)
-        {
-            TakeSnapshot(4);
         }
 
         void changeVolume(int rx)
@@ -894,13 +853,10 @@ namespace datvreceiver
             Properties.Settings.Default.winterhill_baseport = Int32.Parse(txtWinterhillBasePort.Text);
             Properties.Settings.Default.force_local_ip = checkForceLocalIP.Checked;
             Properties.Settings.Default.force_local_ip_ip = txtLocalIP.Text;
-            Properties.Settings.Default.snapshot_path = txtSnapshotPath.Text;
             Properties.Settings.Default.rx1_offset = int.Parse(txtRX1Offset.Text);
             Properties.Settings.Default.rx2_offset = int.Parse(txtRX2Offset.Text);
             Properties.Settings.Default.rx3_offset = int.Parse(txtRX3Offset.Text);
             Properties.Settings.Default.rx4_offset = int.Parse(txtRX4Offset.Text);
-            Properties.Settings.Default.enable_qo100_spectrum = checkEnableSpectrum.Checked;
-            Properties.Settings.Default.enable_qo100_chat = checkEnableChat.Checked;
             Properties.Settings.Default.minimize_properties = checkMinProperties.Checked;
             Properties.Settings.Default.Save();
 
@@ -930,28 +886,6 @@ namespace datvreceiver
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://www.buymeacoffee.com/zr6tg/");
-        }
-
-        private void butChooseSnapshotPath_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-
-            if (fbd.ShowDialog() == DialogResult.OK )
-            {
-                txtSnapshotPath.Text = fbd.SelectedPath;
-            }
-        }
-
-        private void butShowSpectrum_Click(object sender, EventArgs e)
-        {
-            if (specForm.Visible == false)
-            {
-                specForm.Show();
-            }
-            else
-            {
-                specForm.Hide();
-            }
         }
 
         bool fullScreen = false;
@@ -1059,11 +993,6 @@ namespace datvreceiver
         private void videoRx4_DoubleClick(object sender, EventArgs e)
         {
             changeView(4);
-        }
-
-        private void btn_qo100chat_Click(object sender, EventArgs e)
-        {
-            chatForm.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)

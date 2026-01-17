@@ -1,2 +1,16 @@
 .vs
 packages
+/.claude
+CLAUDE.md
+nuget.exe
+/obj/Debug
+/obj/Debug
+/obj
+/.vscode
+/bin
+/bin
+/obj
+*.cache
+obj/Debug/datvreceiver.csproj.AssemblyReference.cache
+obj/Debug/datvreceiver.csproj.CoreCompileInputs.cache
+obj/Debug/datvreceiver.csproj.FileListAbsolute.txt

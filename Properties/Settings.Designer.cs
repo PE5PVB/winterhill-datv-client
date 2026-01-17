@@ -73,31 +73,7 @@ namespace datvreceiver.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string snapshot_path {
-            get {
-                return ((string)(this["snapshot_path"]));
-            }
-            set {
-                this["snapshot_path"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool enable_qo100_spectrum {
-            get {
-                return ((bool)(this["enable_qo100_spectrum"]));
-            }
-            set {
-                this["enable_qo100_spectrum"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("9749982")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int rx1_offset {
             get {
                 return ((int)(this["rx1_offset"]));
@@ -109,7 +85,7 @@ namespace datvreceiver.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("9749982")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int rx2_offset {
             get {
                 return ((int)(this["rx2_offset"]));
@@ -121,7 +97,7 @@ namespace datvreceiver.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("9749982")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int rx3_offset {
             get {
                 return ((int)(this["rx3_offset"]));
@@ -133,7 +109,7 @@ namespace datvreceiver.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("9749982")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int rx4_offset {
             get {
                 return ((int)(this["rx4_offset"]));
@@ -142,31 +118,7 @@ namespace datvreceiver.Properties {
                 this["rx4_offset"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool enable_qo100_chat {
-            get {
-                return ((bool)(this["enable_qo100_chat"]));
-            }
-            set {
-                this["enable_qo100_chat"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("NOCALL")]
-        public string default_chat_nick {
-            get {
-                return ((string)(this["default_chat_nick"]));
-            }
-            set {
-                this["default_chat_nick"] = value;
-            }
-        }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]

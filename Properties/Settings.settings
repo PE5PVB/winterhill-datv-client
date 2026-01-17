@@ -14,29 +14,17 @@
     <Setting Name="force_local_ip_ip" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="snapshot_path" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="enable_qo100_spectrum" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="rx1_offset" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">9749982</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="rx2_offset" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">9749982</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="rx3_offset" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">9749982</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="rx4_offset" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">9749982</Value>
-    </Setting>
-    <Setting Name="enable_qo100_chat" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="default_chat_nick" Type="System.String" Scope="User">
-      <Value Profile="(Default)">NOCALL</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="minimize_properties" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
