@@ -11,6 +11,7 @@ using WebSocketSharp;
 using LibVLCSharp.Shared;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace datvreceiver
 {
@@ -70,8 +71,12 @@ namespace datvreceiver
 
 
         // variables
-        private WebSocket monitorWS;        
+        private WebSocket monitorWS;
         private WebSocket controlWS;
+
+        private System.Threading.Timer monitorReconnectTimer;
+        private System.Threading.Timer controlReconnectTimer;
+        private const int RECONNECT_DELAY_MS = 5000;
 
         private delegate void UpdateVisibilityDelegate(PictureBox pic,bool visible);
         private delegate void UpdateLabelVisibilityDelegate(Label lbl, bool visible);
@@ -403,14 +408,58 @@ namespace datvreceiver
 
         private void ControlWS_OnClose(object sender, CloseEventArgs e)
         {
-            debug("Control WS Closed");
-            controlWS.Connect();
+            debug("Control WS Closed - reconnecting in 5 seconds...");
+            controlReconnectTimer?.Dispose();
+            controlReconnectTimer = new System.Threading.Timer(
+                _ => ReconnectControlWS(),
+                null,
+                RECONNECT_DELAY_MS,
+                Timeout.Infinite
+            );
+        }
+
+        private void ReconnectControlWS()
+        {
+            try
+            {
+                if (controlWS != null && !controlWS.IsAlive)
+                {
+                    debug("Attempting Control WS reconnect...");
+                    controlWS.ConnectAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                debug("Control WS reconnect failed: " + ex.Message);
+            }
         }
 
         private void MonitorWS_OnClose(object sender, CloseEventArgs e)
         {
-            debug("Monitor WS Closed");
-            monitorWS.Connect();
+            debug("Monitor WS Closed - reconnecting in 5 seconds...");
+            monitorReconnectTimer?.Dispose();
+            monitorReconnectTimer = new System.Threading.Timer(
+                _ => ReconnectMonitorWS(),
+                null,
+                RECONNECT_DELAY_MS,
+                Timeout.Infinite
+            );
+        }
+
+        private void ReconnectMonitorWS()
+        {
+            try
+            {
+                if (monitorWS != null && !monitorWS.IsAlive)
+                {
+                    debug("Attempting Monitor WS reconnect...");
+                    monitorWS.ConnectAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                debug("Monitor WS reconnect failed: " + ex.Message);
+            }
         }
 
         private void MonitorWS_OnMessage(object sender, MessageEventArgs e)

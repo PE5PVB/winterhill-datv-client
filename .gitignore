@@ -1,2 +1,8 @@
 .vs
 packages
+/.claude
+/.vscode
+CLAUDE.md
+nuget.exe
+/bin
+/obj
