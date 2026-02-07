@@ -73,28 +73,64 @@ namespace datvreceiver.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string snapshot_path {
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public int rx1_volume {
             get {
-                return ((string)(this["snapshot_path"]));
+                return ((int)(this["rx1_volume"]));
             }
             set {
-                this["snapshot_path"] = value;
+                this["rx1_volume"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool enable_qo100_spectrum {
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public int rx2_volume {
             get {
-                return ((bool)(this["enable_qo100_spectrum"]));
+                return ((int)(this["rx2_volume"]));
             }
             set {
-                this["enable_qo100_spectrum"] = value;
+                this["rx2_volume"] = value;
             }
         }
-        
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public int rx3_volume {
+            get {
+                return ((int)(this["rx3_volume"]));
+            }
+            set {
+                this["rx3_volume"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public int rx4_volume {
+            get {
+                return ((int)(this["rx4_volume"]));
+            }
+            set {
+                this["rx4_volume"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("128")]
+        public int osd_opacity {
+            get {
+                return ((int)(this["osd_opacity"]));
+            }
+            set {
+                this["osd_opacity"] = value;
+            }
+        }
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("9749982")]
@@ -142,31 +178,7 @@ namespace datvreceiver.Properties {
                 this["rx4_offset"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool enable_qo100_chat {
-            get {
-                return ((bool)(this["enable_qo100_chat"]));
-            }
-            set {
-                this["enable_qo100_chat"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("NOCALL")]
-        public string default_chat_nick {
-            get {
-                return ((string)(this["default_chat_nick"]));
-            }
-            set {
-                this["default_chat_nick"] = value;
-            }
-        }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
@@ -176,6 +188,18 @@ namespace datvreceiver.Properties {
             }
             set {
                 this["minimize_properties"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool auto_zoom {
+            get {
+                return ((bool)(this["auto_zoom"]));
+            }
+            set {
+                this["auto_zoom"] = value;
             }
         }
     }

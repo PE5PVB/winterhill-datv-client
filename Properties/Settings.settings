@@ -14,11 +14,20 @@
     <Setting Name="force_local_ip_ip" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="snapshot_path" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="rx1_volume" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
     </Setting>
-    <Setting Name="enable_qo100_spectrum" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+    <Setting Name="rx2_volume" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="rx3_volume" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="rx4_volume" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="osd_opacity" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">128</Value>
     </Setting>
     <Setting Name="rx1_offset" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">9749982</Value>
@@ -32,13 +41,10 @@
     <Setting Name="rx4_offset" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">9749982</Value>
     </Setting>
-    <Setting Name="enable_qo100_chat" Type="System.Boolean" Scope="User">
+    <Setting Name="minimize_properties" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="default_chat_nick" Type="System.String" Scope="User">
-      <Value Profile="(Default)">NOCALL</Value>
-    </Setting>
-    <Setting Name="minimize_properties" Type="System.Boolean" Scope="User">
+    <Setting Name="auto_zoom" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
